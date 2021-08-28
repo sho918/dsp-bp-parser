@@ -1,0 +1,37 @@
+{
+  "name": "dsp-bp-parser",
+  "author": "sho918",
+  "version": "0.1.0",
+  "main": "dist/bundle.js",
+  "license": "MIT",
+  "scripts": {
+    "dev": "webpack serve --mode development",
+    "build": "webpack --mode production",
+    "lint": "eslint src/**/*.ts",
+    "lint:fix": "prettier-eslint src/**/*.ts --write"
+  },
+  "dependencies": {
+    "@types/binary-parser": "^1.5.1",
+    "@types/pako": "^1.0.2",
+    "binary-parser": "^1.9.2",
+    "pako": "^1.0.11"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.12.10",
+    "@babel/plugin-transform-exponentiation-operator": "^7.12.13",
+    "@babel/plugin-transform-runtime": "^7.13.10",
+    "@babel/preset-env": "^7.13.12",
+    "@typescript-eslint/eslint-plugin": "^4.29.3",
+    "babel-loader": "^8.2.2",
+    "eslint": "^7.10.0",
+    "eslint-config-prettier": "^8.3.0",
+    "prettier": "^2.3.2",
+    "prettier-eslint": "^13.0.0",
+    "prettier-eslint-cli": "^5.0.1",
+    "ts-loader": "^9.2.5",
+    "typescript": "^4.4.2",
+    "webpack": "^5.28.0",
+    "webpack-cli": "^4.5.0",
+    "webpack-dev-server": "^4.0.0-beta.0"
+  }
+}

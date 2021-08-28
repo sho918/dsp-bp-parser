@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>dsp-bp-parser</title>
+
+    <script src="https://unpkg.com/stimulus/dist/stimulus.umd.js"></script>
+    <script>
+      (() => {
+        const application = Stimulus.Application.start()
+
+        application.register("bp", class extends Stimulus.Controller {
+          static values = { name: String }
+
+          static get targets() {
+            return ["data"]
+          }
+
+          load(event) {
+            fetch(event.target.dataset.url)
+            .then(response => response.text())
+            .then(text => this.dataTarget.value = text)
+          }
+
+          parse() {
+            console.log(new DspBpParser(this.dataTarget.value).parse())
+          }
+        })
+      })()
+    </script>
+
+    <style type="text/css">
+      textarea { height: 80vh; width: 80%; }
+    </style>
+  </head>
+
+  <body data-controller="bp">
+    <textarea data-bp-target="data"></textarea>
+
+    <div>
+      <button data-action="click->bp#load" data-url="/data/smelter-iron-ingot.txt">Smelter (Iron ingot)</button>
+      <button data-action="click->bp#load" data-url="/data/ils-iron-10000.txt">ILS (Iron 10000)</button>
+      <button data-action="click->bp#parse">Parse</button>
+    </div>
+
+    <script type="text/javascript" src="dist/bundle.js"></script>
+  </body>
+</html>
