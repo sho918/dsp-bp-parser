@@ -1,16 +1,17 @@
+// itemId = 2103, 2104
 export class dStation {
-  parameters: Array<number>;
+  parameters: number[];
   itemCount: number;
   itemSettings: Record<string, number>[];
-  unknownParam: Record<string, number>[];
-  config: Record<string, number>[];
+  storage: Record<string, number>[];
+  config: Record<string, number>;
 
-  constructor(buildingItemId: number, parameters: Array<number>) {
+  constructor(buildingItemId: number, parameters: number[]) {
     this.parameters = parameters;
     this.itemCount = this.getItemCount(buildingItemId);
     this.itemSettings = this.getItemSettings(0);
-    this.unknownParam = this.getUnknownParam(0 + 192);
-    this.config = this.getUnknownParam(0 + 192 + 128);
+    this.storage = this.getStorage(0 + 192);
+    this.config = this.getConfig(0 + 192 + 128);
   }
 
   getItemCount(buildingItemId: number): number {
@@ -38,7 +39,7 @@ export class dStation {
     return results;
   }
 
-  getUnknownParam(baseIdx: number): Record<string, number>[] {
+  getStorage(baseIdx: number): Record<string, number>[] {
     const results: Record<string, number>[] = [];
 
     for (let i = 0; i < this.itemCount; i++) {

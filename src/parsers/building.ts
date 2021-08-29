@@ -1,6 +1,31 @@
 import { Parser } from 'binary-parser';
 
 export class Building {
+  index: number;
+  areaIndex: number;
+  localOffsetX: number;
+  localOffsetY: number;
+  localOffsetZ: number;
+  localOffsetX2: number;
+  localOffsetY2: number;
+  localOffsetZ2: number;
+  yaw: number;
+  yaw2: number;
+  itemId: number;
+  modelIndex: number;
+  tempOutputObjIdx: number;
+  tempInputObjIdx: number;
+  outputToSlot: number;
+  inputFromSlot: number;
+  outputFromSlot: number;
+  inputToSlot: number;
+  outputOffset: number;
+  inputOffset: number;
+  recipeId: number;
+  filterId: number;
+  num: number;
+  parameters: number[];
+
   constructor(data: Record<string, number | number[]>) {
     Object.assign(this, data);
   }

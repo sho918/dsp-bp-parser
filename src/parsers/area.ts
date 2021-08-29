@@ -1,6 +1,15 @@
 import { Parser } from 'binary-parser';
 
 export class Area {
+  index: number;
+  parentIndex: number;
+  tropicAnchor: number;
+  areaSegments: number;
+  anchorLocalOffsetX: number;
+  anchorLocalOffsetY: number;
+  width: number;
+  height: number;
+
   constructor(data: Record<string, number>) {
     Object.assign(this, data);
   }

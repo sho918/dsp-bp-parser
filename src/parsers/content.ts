@@ -5,7 +5,17 @@ import { Area } from './area';
 import { Building } from './building';
 
 export class Content {
-  [x: string]: string | Array<Area> | Array<Building>;
+  version: number;
+  cursorOffsetX: number;
+  cursorOffsetY: number;
+  cursorTargetArea: number;
+  dragBoxSizeX: number;
+  dragBoxSizeY: number;
+  primaryAreaIdx: number;
+  num: number;
+  areas: Area[];
+  num2: number;
+  buildings: Building[];
 
   constructor(data: string) {
     const dData: Uint8Array = Pako.inflate(atob(data));
