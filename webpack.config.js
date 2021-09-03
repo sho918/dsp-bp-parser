@@ -1,8 +1,11 @@
+const path = require('path');
+const webpack = require('webpack');
+const WasmPackPlugin = require('@wasm-tool/wasm-pack-plugin');
+
 module.exports = {
   entry: __dirname + '/src/main.ts',
   output: {
     path: __dirname + '/dist',
-    publicPath: '/dist/',
     filename: 'bundle.js',
 
     library: {
@@ -27,7 +30,7 @@ module.exports = {
   },
   resolve: {
     extensions: [
-      '.ts', '.js',
+      '.ts', '.js', '.wasm',
     ],
   },
   devServer: {
@@ -37,7 +40,19 @@ module.exports = {
     open: false,
     hot: true,
   },
+  plugins: [
+    new WasmPackPlugin({
+      crateDirectory: __dirname,
+      outName: 'md5f',
+    }),
+    new webpack.optimize.LimitChunkCountPlugin({
+      maxChunks: 1,
+    }),
+  ],
   optimization: {
     usedExports: true,
+  },
+  experiments: {
+    asyncWebAssembly: true,
   },
 };

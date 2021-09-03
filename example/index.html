@@ -13,7 +13,7 @@
           static values = { name: String }
 
           static get targets() {
-            return ["data"]
+            return ["data", "result"]
           }
 
           load(event) {
@@ -22,20 +22,27 @@
             .then(text => this.dataTarget.value = text)
           }
 
-          parse() {
-            console.log(new DspBpParser(this.dataTarget.value))
+          async parse() {
+            // Parse blueprint
+            const p = new DspBpParser(this.dataTarget.value);
+
+            // Export new blueprint
+            const newBp = await p.export();
+            this.resultTarget.value = newBp;
           }
         })
       })()
     </script>
 
     <style type="text/css">
-      textarea { height: 80vh; width: 80%; }
+      textarea { height: 50vh; width: 49%; }
+      textarea:read-only {background-color: lightgray; }
     </style>
   </head>
 
   <body data-controller="bp">
     <textarea data-bp-target="data"></textarea>
+    <textarea data-bp-target="result" readonly></textarea>
 
     <div>
       <button data-action="click->bp#load" data-url="/data/smelter-iron-ingot.txt">Smelter (Iron ingot)</button>
@@ -43,6 +50,6 @@
       <button data-action="click->bp#parse">Parse</button>
     </div>
 
-    <script type="text/javascript" src="dist/bundle.js"></script>
+    <script type="text/javascript" src="bundle.js"></script>
   </body>
 </html>

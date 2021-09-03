@@ -24,4 +24,23 @@ export class Header {
     this.shortDesc = decodeURI(el[10]);
     this.desc = decodeURI(el[11]);
   }
+
+  export(): string {
+    const r = [];
+
+    r.push('BLUEPRINT:0');
+    r.push(this.layout);
+    r.push(this.icon0);
+    r.push(this.icon1);
+    r.push(this.icon2);
+    r.push(this.icon3);
+    r.push(this.icon4);
+    r.push('0');
+    r.push(this.tick);
+    r.push(this.gameVersion);
+    r.push(encodeURI(this.shortDesc));
+    r.push(encodeURI(this.desc));
+
+    return r.join();
+  }
 }

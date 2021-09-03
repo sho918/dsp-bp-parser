@@ -1,0 +1,18 @@
+[package]
+name = "dsp-bp-parser"
+version = "0.1.0"
+edition = "2018"
+
+[lib]
+path = "rust/lib.rs"
+crate-type = ["cdylib", "rlib"]
+
+[profile.release]
+lto = true
+
+[features]
+default = ["wee_alloc"]
+
+[dependencies]
+wasm-bindgen = "0.2.45"
+wee_alloc = { version = "0.4.2", optional = true }
